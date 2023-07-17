@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Facture</title>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <!-- icon -->
+        <link rel="shortcut icon" th:href="@{/assets/img/hyper.svg}" type="image/x-icon">
+
+        <!-- Vendor CSS Files -->
+        <link th:href="@{/assets/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+        <link th:href="@{/assets/vendor/bootstrap-icons/bootstrap-icons.css}" rel="stylesheet">
+        <link th:href="@{/assets/vendor/boxicons/css/boxicons.min.css}" rel="stylesheet">
+        <link th:href="@{/assets/vendor/quill/quill.snow.css}" rel="stylesheet">
+        <link th:href="@{/assets/vendor/quill/quill.bubble.css}" rel="stylesheet">
+        <link th:href="@{/assets/vendor/remixicon/remixicon.css}" rel="stylesheet">
+        <link th:href="@{/assets/vendor/simple-datatables/style.css}" rel="stylesheet">
+
+        <link rel="stylesheet" th:href="@{/assets/css/login.css}">
+    </head>
+
+    <body>
+
+        <main>
+            <div class="container">
+        
+              <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+        
+                            <div class="d-flex justify-content-center py-4">
+                                <a  class="logo d-flex align-items-center w-auto">
+                                <span class="d-none d-lg-block">Back</span>
+                                <img th:src="@{/assets/img/hyper.svg}" alt="">
+                                <span class="d-none d-lg-block">Office</span>
+                                </a>
+                            </div><!-- End Logo -->
+        
+                      <div class="card mb-3">
+        
+                        <div class="card-body">
+        
+                          <div class="pt-4 pb-2">
+                            <h5 class="card-title text-center pb-0 fs-4">Facture</h5>
+                            <p class="text-center small">Acte</p>
+                          </div>
+        
+                          <div class="p-2">
+                            <p>Nom du patient :<span th:text="${patient.nom}"></span></p>
+                            <p>Type d'acte :<span th:text="${type.type}"></span></p>
+                            <p>Prix :<span th:text="${prix}"></span></p>
+                            <p>Date de l'acte :<span th:text="${dateActe}"></span></p>
+                            <a th:href="@{/pdf/{nom}/{type}/{prix}/{date}(nom=${patient.nom},type=${type.type},prix=${prix},date=${dateActe})}" download="facture.pdf"><button class="btn btn-primary w-100">PDF</button></a>
+                          </div>
+                            <p class="small mb-0"><a href="/utilisateur">← Retour</a></p>
+                        </div>
+                      </div>
+        
+        
+                    </div>
+                  </div>
+                </div>
+        
+              </section>
+        
+            </div>
+        </main><!-- End #main -->
+
+        <br>
+        <p><a th:href="@{/pdf/{nom}/{type}/{prix}/{date}(nom=${patient.nom},type=${type.type},prix=${prix},date=${dateActe})}" download="facture.pdf"><button>Generer le pdf</button></a></p>
+        <script th:src="@{/assets/vendor/apexcharts/apexcharts.min.js}"></script>
+        <script th:src="@{/assets/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+        <script th:src="@{/assets/vendor/chart.js/chart.umd.js}"></script>
+        <script th:src="@{/assets/vendor/echarts/echarts.min.js}"></script>
+        <script th:src="@{/assets/vendor/quill/quill.min.js}"></script>
+        <script th:src="@{/assets/vendor/simple-datatables/simple-datatables.js}"></script>
+        <script th:src="@{/assets/vendor/tinymce/tinymce.min.js}"></script>
+        <script th:src="@{/assets/vendor/php-email-form/validate.js}"></script>
+        
+        <!-- Template Main JS File -->
+        <script th:src="@{/assets/js/main.js}"></script>
+    </body>
+</html>
