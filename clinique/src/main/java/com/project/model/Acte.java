@@ -32,6 +32,9 @@ public class Acte extends Entity{
     @Column
     Date dateActe;
 
+    @Column
+    Boolean valide;
+
     public Integer getId() {
         return id;
     }
@@ -50,6 +53,14 @@ public class Acte extends Entity{
 
     public void setPrix(Integer prix) {
         this.prix = prix;
+    }
+
+    public Boolean getValide() {
+        return valide;
+    }
+
+    public void setValide(Boolean valide) {
+        this.valide = valide;
     }
 
     
@@ -81,19 +92,21 @@ public class Acte extends Entity{
         this.id = id;
     }
 
-    public Acte(Integer id, Integer type_acte, Integer patient, Integer prix, Date dateActe) {
+    public Acte(Integer id, Integer type_acte, Integer patient, Integer prix, Date dateActe,Boolean valide) {
         this.id = id;
         this.type_acte = type_acte;
         this.patient = patient;
         this.prix = prix;
         this.dateActe = dateActe;
+        this.valide=valide;
     }
 
-    public Acte(Integer type_acte, Integer patient, Integer prix, Date dateActe) {
+    public Acte(Integer type_acte, Integer patient, Integer prix, Date dateActe,Boolean valide) {
         this.type_acte = type_acte;
         this.patient = patient;
         this.prix = prix;
         this.dateActe = dateActe;
+        this.valide=valide;
     }
 
     

@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>Type Acte - liste</title>
-        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-        
+        <title>Type depense</title>
         <!-- icon -->
         <link rel="shortcut icon" th:href="@{/assets/img/hyper.svg}" type="image/x-icon">
 
@@ -24,6 +22,7 @@
     </head>
 
     <body>
+
         <!-- ======= Header ======= -->
         <div th:include="/admin/components/header.html"></div>
         <div th:include="/admin/components/sidebar.html"></div>
@@ -31,7 +30,7 @@
         <main id="main" class="main">
 
             <div class="pagetitle">
-              <h1>Type d'acte</h1>
+              <h1>Type de depense</h1>
               <nav>
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a>CRUD</a></li>
@@ -53,8 +52,8 @@
                         <thead>
                           <tr>
                             <th scope="col">Id</th>
-                            <th scope="col">Type</th>
-                            <th scope="col">Budget Annuel</th>
+                            <th scope="col">Libelle</th>
+                            <th scope="col">Budget</th>
                             <th scope="col">Code</th>
                             <th></th>
                           </tr>
@@ -62,12 +61,12 @@
                         <tbody>
                           <tr th:each="type : ${type}">
                             <td th:text="${type.id}"></td>
-                            <td th:text="${type.type}"></td>
-                            <td th:text="${type.budget}+' ar/an'"></td>
+                            <td th:text="${type.libelle}"></td>
+                            <td th:text="${type.budget}"></td>
                             <td th:text="${type.code}"></td>
                             <td>
-                              <a th:href="@{/typeActe/update/{id}(id=${type.id})}"><button type="button" class="btn btn-info"><i class="bi bi-pencil"></i></button></a>
-                              <a th:href="@{/typeActe/delete/{id}(id=${type.id})}"><button type="button" class="btn btn-danger"><i class="bi bi-trash"></i></button></a>
+                              <a th:href="@{/typeDepense/update/{id}(id=${type.id})}"><button type="button" class="btn btn-info"><i class="bi bi-pencil"></i></button></a>
+                              <a th:href="@{/typeDepense/delete/{id}(id=${type.id})}"><button type="button" class="btn btn-danger"><i class="bi bi-trash"></i></button></a>
                             </td>
                           </tr>
                         </tbody>
@@ -87,21 +86,21 @@
         
                         <div class="col-md-12">
                           <div class="form-floating">
-                            <input required type="text" placeholder="type" name="type" class="form-control" id="floatingName" >
-                            <label for="floatingName">Type</label>
+                            <input required type="text" placeholder="libelle" name="type" class="form-control" id="floatingName" >
+                            <label for="floatingName">Libelle</label>
                           </div>
                         </div>
 
                         <div class="col-md-12">
                           <div class="form-floating">
-                            <input required type="number" placeholder="budget" min="0" pattern="^[0-9]+$" name="budget" class="form-control" id="floatingName" >
+                            <input required type="number" placeholder="budget" pattern="^[0-9]+$" min="0" name="budget" class="form-control" id="floatingName" >
                             <label for="floatingName">Budget</label>
                           </div>
                         </div>
 
                         <div class="col-md-12">
                           <div class="form-floating">
-                            <input required type="text" maxlength="3" placeholder="code" attern="[A-Za-z]{3}" name="code" class="form-control" id="floatingName" >
+                            <input required type="text" placeholder="code" maxlength="3" pattern="[A-Za-z]{3}" name="code" class="form-control" id="floatingName" >
                             <label for="floatingName">Code</label>
                           </div>
                         </div>
@@ -120,10 +119,6 @@
         
             </section>
         </main>
-
-
-        <!-- Vendor JS Files -->
-
 
         <script th:src="@{/assets/vendor/apexcharts/apexcharts.min.js}"></script>
         <script th:src="@{/assets/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>

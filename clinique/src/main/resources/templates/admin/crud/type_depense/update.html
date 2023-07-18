@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>Depense modif</title>
+        <title>Type depense - Modif</title>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
         <!-- icon -->
        <link rel="shortcut icon" th:href="@{/assets/img/hyper.svg}" type="image/x-icon">
@@ -18,7 +18,7 @@
     </head>
 
     <body>
-        
+
         <main>
             <div class="container">
         
@@ -41,33 +41,33 @@
         
                           <div class="pt-4 pb-2">
                             <h5 class="card-title text-center pb-0 fs-4">Update</h5>
-                            <p class="text-center small">Modifier un depense</p>
+                            <p class="text-center small">Modifier un type de depense</p>
                           </div>
         
-                          <form action="/depense/update" method="post" class="row g-3 needs-validation" novalidate>
+                          <form action="/typeDepense/update" method="post" class="row g-3 needs-validation" novalidate>
                             
-                            <input type="hidden" name="id" th:value="${depense.id}">
+                            <input type="hidden" name="id" th:value="${type.id}">
 
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                  <input required type="text" name="libelle" th:value="${depense.libelle}" class="form-control" id="floatingName">
+                                  <input required type="text" name="type" th:value="${type.libelle}" class="form-control" id="floatingName">
                                   <label for="floatingName">Libelle</label>
                                 </div>
                             </div>
 
                             <div class="col-md-12">
-                                <div class="form-floating">
-                                  <input required type="number" name="prix" th:value="${depense.prix}" class="form-control" id="floatingName">
-                                  <label for="floatingName">Prix</label>
-                                </div>
-                            </div>
+                              <div class="form-floating">
+                                <input required type="number" name="budget" th:value="${type.budget}" class="form-control" id="floatingName">
+                                <label for="floatingName">Budget</label>
+                              </div>
+                          </div>
 
-                            <div class="col-md-12">
-                                <div class="form-floating">
-                                  <input required type="date" name="dateDepense" th:value="${depense.dateDepense}" class="form-control" id="floatingName">
-                                  <label for="floatingName">Date de depense</label>
-                                </div>
+                          <div class="col-md-12">
+                            <div class="form-floating">
+                              <input required type="text" name="code" th:value="${type.code}" maxlength="3" pattern="[A-Za-z]{3}" class="form-control" id="floatingName">
+                              <label for="floatingName">Code</label>
                             </div>
+                          </div>
         
                             <div class="col-12">
                               <button class="btn btn-primary w-100" type="submit">Update</button>
@@ -103,6 +103,5 @@
         
         <!-- Template Main JS File -->
         <script th:src="@{/assets/js/main.js}"></script>
-        </form>
     </body>
 </html>

@@ -38,6 +38,9 @@ public class ActeV extends Entity{
     @Column
     Date dateActe;
 
+    @Column
+    Boolean valide;
+
     public Integer getId() {
         return id;
     }
@@ -98,6 +101,14 @@ public class ActeV extends Entity{
 
     public ActeV(Integer id){
         setId(id);
+    }
+
+    public Boolean getValide() {
+        return valide;
+    }
+    
+    public void setValide(Boolean valide) {
+        this.valide = valide;
     }
     
 }

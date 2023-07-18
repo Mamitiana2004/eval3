@@ -43,29 +43,30 @@
           
                     <div class="card">
                       <div class="card-body">
-                        <h5 class="card-title">Liste</h5>
-                        
-                        <!-- Table with stripped rows -->
-                        <table class="table table-responsive datatable ">
-                          <thead>
-                            <tr>
-                              <th scope="col">Mois</th>
-                              <th scope="col">Annee</th>
-                              <th scope="col">Recette</th>
-                              <th scope="col">Depense</th>
-                              <th scope="col">Budget</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr th:each="budget : ${budgets}">
-                                <td th:text="${budget.mois}"></td>
-                                <td th:text="${budget.annee}"></td>
-                                <td th:text="${budget.recettes}+' Ar'"></td>
-                                <td th:text="${budget.depenses}+' Ar'"></td>
-                                <td th:text="${budget.budget}+' Ar'"></td>
-                            </tr>
-                          </tbody>
-                        </table>
+                        <h5 class="card-title">Filtre</h5>
+                        <form action="filtrer" method="post" class="row g-3 needs-validation" novalidate>
+
+                          <div class="col-md-4">
+                            <div class="form-floating">
+                              <select class="form-control" name="mois">
+                                  <option th:each="moi : ${mois}" th:value="${moi.id}" th:text="${moi.mois}"></option>
+                              </select>
+                              <label for="floatingName">Mois</label>
+                            </div>
+                          </div>
+
+                          <div class="col-md-4">
+                            <div class="form-floating">
+                              <input required pattern="[1-9][0-9]{3}" max="9999" min="0" type="number" class="form-control" name="annee" id="floatingName" placeholder="année">
+                              <label for="floatingName">Année</label>
+                            </div>
+                          </div>
+
+                          <div class="col-md-4">
+                            <button type="submit" class="btn btn-primary">Filtrer</button>
+                          </div>
+
+                        </form>
                         <!-- End Table with stripped rows -->
           
                       </div>

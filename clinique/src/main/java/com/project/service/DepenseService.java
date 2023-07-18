@@ -7,10 +7,12 @@ package com.project.service;
 
 import com.project.model.Depense;
 import com.project.model.TypeActe;
+import com.project.model.view.DepenseV;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -18,41 +20,41 @@ import java.util.Date;
  */
 public class DepenseService {
     
-    public static ArrayList<Depense> getAll(){
+    public static ArrayList<DepenseV> getAll(){
         try {
-            return new Depense().getAll();
+            return new DepenseV().getAll();
         } catch (Exception e) {
             System.err.println("Depense select :"+e.getMessage());
             return null;
         }
     }
 
-    public static Depense getById(Integer id){
+    public static DepenseV getById(Integer id){
         try {
-            Depense depense=new Depense(id);
-            return (Depense)depense.getById();
+            DepenseV depense=new DepenseV(id);
+            return (DepenseV)depense.getById();
         } catch (Exception e) {
             System.err.println("Depense getById :"+e.getMessage());
             return null;
         }
     }
     
-    public static void insert(String libelle,Integer prix,String dateDepense){
+    public static void insert(Integer type,Integer prix,String dateDepense){
         try {
             SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
             Date date=format.parse(dateDepense);
-            Depense depense=new Depense(libelle, prix, date);
+            Depense depense=new Depense(type, prix, date);
             depense.save();
         } catch (Exception e) {
             System.err.println("Depense save :"+e.getMessage());
         }
     }
     
-    public static void update(Integer id,String libelle,Integer prix,String dateDepense){
+    public static void update(Integer id,Integer type,Integer prix,String dateDepense){
         try {
             SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
             Date date=format.parse(dateDepense);
-            Depense depense=new Depense(id,libelle, prix, date);
+            Depense depense=new Depense(id,type, prix, date);
             depense.update();
         } catch (Exception e) {
             System.err.println("Depense update :"+e.getMessage());
@@ -67,9 +69,24 @@ public class DepenseService {
             System.err.println("Depense delete :"+e.getMessage());
         }
     }
-    
-    public static void main(String[] args) {
-        System.out.println(DepenseService.getAll());
+
+    public static void getDepense(List<String[]> datas) throws Exception{
+        SimpleDateFormat format=new SimpleDateFormat("dd/MM/yyyy");
+        for (String[] data : datas) {
+            System.out.println(data.length);
+            if(data.length==3){
+                Date date=format.parse(data[0]);
+                Integer montant=Integer.parseInt(data[2]);
+                Integer type=TypeDepenseService.getIdByCode(data[1]);
+                System.out.println(date +" "+montant+" "+type);
+                if(date!=null && type != 0){
+                    Depense depense=new Depense(type, montant, date);
+                    depense.save();
+                }
+                
+            }
+        }
     }
+    
     
 }

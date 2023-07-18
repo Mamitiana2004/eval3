@@ -3,6 +3,8 @@ package com.project.service;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import com.project.model.Admin;
 import com.project.util.Cryptage;
 
@@ -35,7 +37,14 @@ public class AdminService {
         return null;
     }
 	
-	
+	public static String redirectConnect(HttpSession session,String page){
+        if(session.getAttribute("idAdmin")==null){
+            return "redirect:/loginAdmin";
+        }
+        else{
+            return page;
+        }
+    }
 	
 	
 }

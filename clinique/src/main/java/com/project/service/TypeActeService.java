@@ -6,6 +6,8 @@
 package com.project.service;
 
 import com.project.model.TypeActe;
+
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 /**
@@ -33,18 +35,18 @@ public class TypeActeService {
         }
     }
     
-    public static void insert(String type){
+    public static void insert(String type,BigDecimal budget,String code){
         try {
-            TypeActe typeActe=new TypeActe(type);
+            TypeActe typeActe=new TypeActe(type,budget,code);
             typeActe.save();
         } catch (Exception e) {
             System.err.println("TypeActe save :"+e.getMessage());
         }
     }
     
-    public static void update(Integer id,String type){
+    public static void update(Integer id,String type,BigDecimal budget,String code){
         try {
-            TypeActe typeActe=new TypeActe(id,type);
+            TypeActe typeActe=new TypeActe(id,type,budget,code);
             typeActe.update();
         } catch (Exception e) {
             System.err.println("TypeActe update :"+e.getMessage());

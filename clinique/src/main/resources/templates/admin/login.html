@@ -50,7 +50,7 @@
                                 <div class="form-floating">
                                   <input required type="text" name="identifiant" class="form-control" id="floatingName">
                                   <label for="floatingName">Identifiant</label>
-                                  <div class="invalid-feedback">Please enter your identifiant.</div>
+                                  <div style="color: #a00;" th:text="${errorIdentifiant}"></div>
                                 </div>
                             </div>
     
@@ -58,7 +58,7 @@
                                 <div class="form-floating">
                                   <input required type="password" name="password" class="form-control" id="floatingName">
                                   <label for="floatingName">Password</label>
-                                  <div class="invalid-feedback">Please enter your password.</div>
+                                  <div style="color: #a00;" th:text="${errorPassword}"></div>
                                 </div>
                             </div>
         

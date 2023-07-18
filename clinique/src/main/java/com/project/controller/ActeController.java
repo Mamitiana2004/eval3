@@ -1,6 +1,10 @@
 package com.project.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,73 +14,61 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.project.model.Acte;
 import com.project.model.Patient;
 import com.project.model.TypeActe;
 import com.project.model.view.ActeV;
 import com.project.service.ActeService;
+import com.project.service.AdminService;
 import com.project.service.PatientService;
 import com.project.service.TypeActeService;
+import com.project.service.UtilisateurService;
 
 @Controller
 @RequestMapping("/acte")
 public class ActeController {
     
      @GetMapping("/liste")
-    public String getAll(Model model){
+    public String getAll(Model model,HttpSession session){
         ArrayList<ActeV> type_acte=ActeService.getAll();
         ArrayList<Patient> patients=PatientService.getAll();
         ArrayList<TypeActe> types=TypeActeService.getAll();
         model.addAttribute("patients",patients);
         model.addAttribute("types",types);
         model.addAttribute("actes", type_acte);
-        return "admin/crud/acte/liste";
+        return AdminService.redirectConnect(session, "admin/crud/acte/liste");
     }
 
-    @GetMapping("/add")
-    public String add(Model model) {
-        ArrayList<Patient> patients=PatientService.getAll();
-        ArrayList<TypeActe> types=TypeActeService.getAll();
-        model.addAttribute("patients",patients);
-        model.addAttribute("types",types);
-        return "admin/crud/acte/add";
-    }
 
-    @GetMapping("/addUser")
-    public String addUser(Model model) {
-        ArrayList<Patient> patients=PatientService.getAll();
-        ArrayList<TypeActe> types=TypeActeService.getAll();
-        model.addAttribute("patients",patients);
-        model.addAttribute("types",types);
-        return "user/acte/add";
-    }
+
 
     @PostMapping("/add")
     public String add(@RequestParam Integer type,
     @RequestParam Integer patient,
     @RequestParam Integer prix,
-    @RequestParam String dateActe) 
+    @RequestParam String dateActe,
+    HttpSession session) 
     {
         ActeService.insert(type, patient, prix, dateActe);
-        return "redirect:liste";
+        return UtilisateurService.redirectConnect(session, "redirect:/patient/addActe/"+patient);
     }
 
-    @PostMapping("/addUser")
-    public String addUser(@RequestParam Integer type,
-    @RequestParam Integer patient,
-    @RequestParam Integer prix,
-    @RequestParam String dateActe,
-    Model model) 
+    @GetMapping("/facture/{id}")
+    public String addUser(@PathVariable("id") Integer id,Model model,HttpSession session) 
     {
-        ActeService.insert(type, patient, prix, dateActe);
-        Patient patient2=PatientService.getById(patient);
-        TypeActe typeActe=TypeActeService.getById(type);
-
-        model.addAttribute("patient", patient2);
-        model.addAttribute("type", typeActe);
-        model.addAttribute("prix", prix);
-        model.addAttribute("dateActe", dateActe);
-        return "user/acte/facture";
+        ArrayList<ActeV> liste=ActeService.getByPatientNonValide(id);
+        ActeService.valider(id);
+        Patient p=PatientService.getById(id);
+        Integer montantT=0;
+        for (ActeV acte : liste) {
+            montantT+=acte.getPrix();
+        }
+        Date date=new Date();
+        SimpleDateFormat format=new SimpleDateFormat("dd-MM-yyyy");
+        model.addAttribute("actes", liste);
+        model.addAttribute("patient", p);
+        model.addAttribute("montantT", montantT);
+        model.addAttribute("dateN", format.format(date));
+        return UtilisateurService.redirectConnect(session, "user/acte/facture");
     }
 
     @PostMapping("/update")
@@ -84,21 +76,21 @@ public class ActeController {
     @RequestParam Integer type,
     @RequestParam Integer patient,
     @RequestParam Integer prix,
-    @RequestParam String dateActe) 
+    @RequestParam String dateActe,HttpSession session) 
     {
         ActeService.update(id, type, patient, prix, dateActe);
-        return "redirect:liste";
+        return AdminService.redirectConnect(session, "redirect:liste");
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable("id") int id) 
+    public String delete(@PathVariable("id") int id,HttpSession session) 
     {
         ActeService.delete(id);
-        return "redirect:/acte/liste";
+        return AdminService.redirectConnect(session, "redirect:/acte/liste");
     }
 
     @GetMapping("/update/{id}")
-    public String update(@PathVariable("id") int id,Model model) 
+    public String update(@PathVariable("id") int id,Model model,HttpSession session) 
     {
         ActeV acte=ActeService.getById(id);
         ArrayList<Patient> patients=PatientService.getAll();
@@ -106,7 +98,7 @@ public class ActeController {
         model.addAttribute("patients",patients);
         model.addAttribute("types",types);
         model.addAttribute("acte",acte);
-        return "admin/crud/acte/update";
+        return AdminService.redirectConnect(null, "admin/crud/acte/update");
     }
 
 

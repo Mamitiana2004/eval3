@@ -30,7 +30,7 @@
                 <h1>Acte</h1>
                 <nav>
                   <ol class="breadcrumb">
-                    <li class="breadcrumb-item active">AJouter</li>
+                    <li class="breadcrumb-item active">Liste des patients</li>
                   </ol>
                 </nav>
             </div><!-- End Page Title -->
@@ -38,8 +38,38 @@
             <section id="section" class="section">
                 <div class="row">
                   <div class="col-xxl-12">
-          
+                    
                     <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">Liste</h5>
+                        
+                        <!-- Table with stripped rows -->
+                        <table class="table table-responsive datatable ">
+                          <thead>
+                            <tr>
+                              <th scope="col">Nom</th>
+                              <th scope="col">Date de naissance</th>
+                              <th scope="col">Genre</th>
+                              <th></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr th:each="patient : ${patients}">
+                              <td th:text="${patient.nom}"></td>
+                              <td th:text="${patient.dateNaissance}"></td>
+                              <td th:text="${patient.genre == 'm' ? 'Homme' : 'Femme'}"></td>
+                              <td>
+                                <a th:href="@{/patient/addActe/{id}(id=${patient.id})}"><button type="button" class="btn btn-info"><i class="bi bi-plus"></i>Ajouter un acte</button></a>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <!-- End Table with stripped rows -->
+          
+                      </div>
+                    </div>
+
+                    <!-- <div class="card">
                       <div class="card-body">
                         <h1 class="card-title">Ajouter un acte</h1>
                         <form action="/acte/addUser" method="post" class="row g-3 needs-validation" novalidate>
@@ -83,7 +113,7 @@
             
                           </form>
                       </div>
-                    </div>
+                    </div> -->
           
                   </div>
           

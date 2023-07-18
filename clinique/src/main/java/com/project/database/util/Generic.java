@@ -99,7 +99,6 @@ public class Generic implements InterfaceDAO{
                 Field[] fields=TableHelper.getAllAnnotedFieldWithColumn(object);
                 for (Field field : fields) {
                     Method set=Helper.setter(field);
-                    System.out.println(field.getName()+" "+res.getObject(ColumnHelper.getColumnName(field)).getClass());
                     set.invoke(object, res.getObject(ColumnHelper.getColumnName(field)));
                 }
                 Field[] fieldFKs=TableHelper.getAllForeignKey(object);

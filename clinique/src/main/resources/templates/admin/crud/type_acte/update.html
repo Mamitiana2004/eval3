@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>Update type acte</title>
+        <title>Type acte - Modif</title>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
         <!-- icon -->
        <link rel="shortcut icon" th:href="@{/assets/img/hyper.svg}" type="image/x-icon">
@@ -54,6 +54,20 @@
                                   <label for="floatingName">Type</label>
                                 </div>
                             </div>
+
+                            <div class="col-md-12">
+                              <div class="form-floating">
+                                <input required type="number" name="budget" th:value="${type.budget}" class="form-control" id="floatingName">
+                                <label for="floatingName">Budget</label>
+                              </div>
+                          </div>
+
+                          <div class="col-md-12">
+                            <div class="form-floating">
+                              <input required type="text" maxlength="3" pattern="[A-Za-z]{3}" name="code" th:value="${type.code}" class="form-control" id="floatingName">
+                              <label for="floatingName">Code</label>
+                            </div>
+                        </div>
         
                             <div class="col-12">
                               <button class="btn btn-primary w-100" type="submit">Update</button>

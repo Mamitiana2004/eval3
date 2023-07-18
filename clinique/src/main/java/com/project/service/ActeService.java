@@ -28,10 +28,32 @@ public class ActeService {
         }
     }
 
+    public static ArrayList<ActeV> getByPatientNonValide(Integer patient){
+        try {
+            ActeV acte=new ActeV();
+            acte.setIdPatient(patient);
+            acte.setValide(false);
+            return (ArrayList<ActeV>)acte.get("idPatient","valide");
+        } catch (Exception e) {
+            System.err.println("Acte select : "+e.getMessage());
+            return null;
+        }
+    }
+
     public static ActeV getById(Integer id){
         try {
             ActeV acte=new ActeV(id);
             return (ActeV)acte.getById();
+        } catch (Exception e) {
+            System.err.println("TypeActe getById :"+e.getMessage());
+            return null;
+        }
+    }
+
+    public static Acte getByIdT(Integer id){
+        try {
+            Acte acte=new Acte(id);
+            return (Acte)acte.getById();
         } catch (Exception e) {
             System.err.println("TypeActe getById :"+e.getMessage());
             return null;
@@ -42,8 +64,21 @@ public class ActeService {
         try {
             SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
             Date date=format.parse(dateActe);
-            Acte acte=new Acte(type_acte, patient, prix, date);
+            Acte acte=new Acte(type_acte, patient, prix, date,false);
             acte.save();
+        } catch (Exception e) {
+            System.err.println("Acte save : "+e.getMessage());
+        }
+    }
+
+    public static void valider(Integer patient){
+        try {
+            ArrayList<ActeV> actes=ActeService.getByPatientNonValide(patient);
+            for (ActeV acteV : actes) {
+                Acte acte=ActeService.getByIdT(acteV.getId());
+                acte.setValide(true);
+                acte.update();
+            }
         } catch (Exception e) {
             System.err.println("Acte save : "+e.getMessage());
         }
@@ -53,7 +88,7 @@ public class ActeService {
         try {
             SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
             Date date=format.parse(dateActe);
-            Acte acte=new Acte(id,type_acte, patient, prix, date);
+            Acte acte=new Acte(id,type_acte, patient, prix, date,true);
             acte.update();
         } catch (Exception e) {
             System.err.println("Acte update : "+e.getMessage());

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>Modifier patient</title>
+        <title>Patient - Modifier</title>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
         <!-- icon -->
        <link rel="shortcut icon" th:href="@{/assets/img/hyper.svg}" type="image/x-icon">
@@ -49,14 +49,14 @@
 
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                  <input required type="text" name="nom" th:value="${patient.nom}" class="form-control" id="floatingName">
+                                  <input required type="text" placeholder="nom" name="nom" th:value="${patient.nom}" class="form-control" id="floatingName">
                                   <label for="floatingName">Nom</label>
                                 </div>
                             </div>
 
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                  <input required type="date" name="dateNaissance" th:value="${patient.dateNaissance}" class="form-control" id="floatingName" >
+                                  <input required type="date" placeholder="date" name="dateNaissance" th:value="${patient.dateNaissance}" class="form-control" id="floatingName" >
                                   <label for="floatingName">Date de naissance</label>
                                 </div>
                             </div>

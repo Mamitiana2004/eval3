@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>Depense modif</title>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-        <!-- icon -->
-       <link rel="shortcut icon" th:href="@{/assets/img/hyper.svg}" type="image/x-icon">
-       
-       <!-- Vendor CSS Files -->
-       <link th:href="@{/assets/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
-       <link th:href="@{/assets/vendor/bootstrap-icons/bootstrap-icons.css}" rel="stylesheet">
-       <link th:href="@{/assets/vendor/boxicons/css/boxicons.min.css}" rel="stylesheet">
-       <link th:href="@{/assets/vendor/quill/quill.snow.css}" rel="stylesheet">
-       <link th:href="@{/assets/vendor/quill/quill.bubble.css}" rel="stylesheet">
-       <link th:href="@{/assets/vendor/remixicon/remixicon.css}" rel="stylesheet">
-       <link th:href="@{/assets/vendor/simple-datatables/style.css}" rel="stylesheet">
-       <link rel="stylesheet" th:href="@{/assets/css/login.css}">
+        <title>Login Employe</title>
+         <!-- icon -->
+        <link rel="shortcut icon" th:href="@{/assets/img/hyper.svg}" type="image/x-icon">
+        
+        <!-- Vendor CSS Files -->
+        <link th:href="@{/assets/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+        <link th:href="@{/assets/vendor/bootstrap-icons/bootstrap-icons.css}" rel="stylesheet">
+        <link th:href="@{/assets/vendor/boxicons/css/boxicons.min.css}" rel="stylesheet">
+        <link th:href="@{/assets/vendor/quill/quill.snow.css}" rel="stylesheet">
+        <link th:href="@{/assets/vendor/quill/quill.bubble.css}" rel="stylesheet">
+        <link th:href="@{/assets/vendor/remixicon/remixicon.css}" rel="stylesheet">
+        <link th:href="@{/assets/vendor/simple-datatables/style.css}" rel="stylesheet">
+        <link rel="stylesheet" th:href="@{/assets/css/login.css}">
     </head>
 
     <body>
-        
+
         <main>
             <div class="container">
         
@@ -29,7 +29,7 @@
         
                             <div class="d-flex justify-content-center py-4">
                                 <a  class="logo d-flex align-items-center w-auto">
-                                <span class="d-none d-lg-block">Back</span>
+                                <span class="d-none d-lg-block">Front</span>
                                 <img th:src="@{/assets/img/hyper.svg}" alt="">
                                 <span class="d-none d-lg-block">Office</span>
                                 </a>
@@ -40,40 +40,31 @@
                         <div class="card-body">
         
                           <div class="pt-4 pb-2">
-                            <h5 class="card-title text-center pb-0 fs-4">Update</h5>
-                            <p class="text-center small">Modifier un depense</p>
+                            <h5 class="card-title text-center pb-0 fs-4">Login</h5>
+                            <p class="text-center small">Enter your identifiant & password to continue</p>
                           </div>
         
-                          <form action="/depense/update" method="post" class="row g-3 needs-validation" novalidate>
-                            
-                            <input type="hidden" name="id" th:value="${depense.id}">
-
+                          <form action="/user/login" method="post" class="row g-3 needs-validation" novalidate>
+        
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                  <input required type="text" name="libelle" th:value="${depense.libelle}" class="form-control" id="floatingName">
-                                  <label for="floatingName">Libelle</label>
+                                  <input required type="text" name="identifiant" class="form-control" id="floatingName">
+                                  <label for="floatingName">Identifiant</label>
+                                  <div style="color: #a00;" th:text="${errorIdentifiant}"></div>
                                 </div>
                             </div>
-
+    
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                  <input required type="number" name="prix" th:value="${depense.prix}" class="form-control" id="floatingName">
-                                  <label for="floatingName">Prix</label>
-                                </div>
-                            </div>
-
-                            <div class="col-md-12">
-                                <div class="form-floating">
-                                  <input required type="date" name="dateDepense" th:value="${depense.dateDepense}" class="form-control" id="floatingName">
-                                  <label for="floatingName">Date de depense</label>
+                                  <input required type="password" name="password" class="form-control" id="floatingName">
+                                  <label for="floatingName">Password</label>
+                                  <div style="color: #a00;" th:text="${errorPassword}"></div>
                                 </div>
                             </div>
         
+        
                             <div class="col-12">
-                              <button class="btn btn-primary w-100" type="submit">Update</button>
-                            </div>
-                            <div class="col-12">
-                              <p class="small mb-0"><a href="/typActe/liste">← Retour</a></p>
+                              <button class="btn btn-primary w-100" type="submit">Login</button>
                             </div>
                           </form>
         
@@ -95,7 +86,7 @@
         <script th:src="@{/assets/vendor/apexcharts/apexcharts.min.js}"></script>
         <script th:src="@{/assets/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
         <script th:src="@{/assets/vendor/chart.js/chart.umd.js}"></script>
-        <script th:src="@{/assets/vendor/echarts/echarts.min.js}"></script>
+        <script th:src="@{/assets/vendor/echarts/echarts .min.js}"></script>
         <script th:src="@{/assets/vendor/quill/quill.min.js}"></script>
         <script th:src="@{/assets/vendor/simple-datatables/simple-datatables.js}"></script>
         <script th:src="@{/assets/vendor/tinymce/tinymce.min.js}"></script>
@@ -103,6 +94,5 @@
         
         <!-- Template Main JS File -->
         <script th:src="@{/assets/js/main.js}"></script>
-        </form>
     </body>
 </html>

@@ -42,7 +42,7 @@
         
             <section id="section" class="section">
               <div class="row">
-                <div class="col-xxl-8">
+                <div class="col-xxl-12">
         
                   <div class="card">
                     <div class="card-body">
@@ -81,53 +81,6 @@
         
                 </div>
         
-                <div class="col-xxl-4">
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">Ajouter</h5>
-                      <form action="/acte/add" method="post" class="row g-3 needs-validation" novalidate>
-                        
-                        <div class="col-md-12">
-                            <div class="form-floating">
-                              <select class="form-control" name="type">
-                                  <option th:each="type : ${types}" th:value="${type.id}" th:text="${type.type}"></option>
-                              </select>
-                              <label for="floatingName">Type d'acte</label>
-                            </div>
-                        </div>
-
-                        <div class="col-md-12">
-                            <div class="form-floating">
-                              <select class="form-control" name="patient">
-                                  <option th:each="patient : ${patients}" th:value="${patient.id}" th:text="${patient.nom}"></option>
-                              </select>
-                              <label for="floatingName">Patient</label>
-                            </div>
-                        </div>
-
-
-                        <div class="col-md-12">
-                          <div class="form-floating">
-                            <input required type="number" name="prix" class="form-control" id="floatingName" >
-                            <label for="floatingName">Prix</label>
-                          </div>
-                        </div>
-
-                        <div class="col-md-12">
-                            <div class="form-floating">
-                              <input required type="date" name="dateActe" class="form-control" id="floatingName" >
-                              <label for="floatingName">Date de l'acte</label>
-                            </div>
-                          </div>
-        
-                        <div class="col-md-12">
-                          <button type="submit" class="btn btn-primary">Ajouter</button>
-                        </div>
-        
-                      </form>
-                    </div>
-                  </div>
-                </div>
         
               </div>
         

@@ -15,21 +15,21 @@ import com.project.database.object.Entity;
  *
  * @author mamit
  */
-@Table("type_acte")
-public class TypeActe extends Entity{
+@Table("type_depense")
+public class TypeDepense extends Entity{
     
     @Column(pk=true,autoComplete = true)
     Integer id;
     
     @Column
-    String type;
+    String libelle;
     
     @Column
     BigDecimal budget;
-
+    
     @Column
     String code;
-    
+
     public Integer getId() {
         return id;
     }
@@ -38,12 +38,12 @@ public class TypeActe extends Entity{
         this.id = id;
     }
 
-    public String getType() {
-        return type;
+    public String getLibelle() {
+        return libelle;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setLibelle(String libelle) {
+        this.libelle = libelle;
     }
 
     public BigDecimal getBudget() {
@@ -62,27 +62,26 @@ public class TypeActe extends Entity{
         this.code = code;
     }
     
+
+    public TypeDepense() {
+    }
+
+    public TypeDepense(Integer id) {
+        this.id = id;
+    }
+
+    public TypeDepense(String libelle, BigDecimal budget, String code) {
+        this.libelle = libelle;
+        this.budget = budget;
+        this.code = code;
+    }
+
+    public TypeDepense(Integer id, String libelle, BigDecimal budget, String code) {
+        this.id = id;
+        this.libelle = libelle;
+        this.budget = budget;
+        this.code = code;
+    }
     
-
-    public TypeActe() {
-    }
-
-    public TypeActe(Integer id) {
-        this.id = id;
-    }
-
-    public TypeActe(Integer id, String type, BigDecimal budget, String code) {
-        this.id = id;
-        this.type = type;
-        this.budget = budget;
-        this.code = code;
-    }
-
-    public TypeActe(String type, BigDecimal budget, String code) {
-        this.type = type;
-        this.budget = budget;
-        this.code = code;
-    }
-
     
 }

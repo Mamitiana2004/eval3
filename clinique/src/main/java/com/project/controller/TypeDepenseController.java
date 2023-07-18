@@ -13,58 +13,58 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.project.model.TypeActe;
+import com.project.model.TypeDepense;
 import com.project.service.AdminService;
-import com.project.service.TypeActeService;
+import com.project.service.TypeDepenseService;
 
 @Controller
-@RequestMapping("/typeActe")
-public class TypeActeController {
+@RequestMapping("/typeDepense")
+public class TypeDepenseController {
     
     @GetMapping("/liste")
     public String getAll(Model model,HttpSession session){
-        ArrayList<TypeActe> type_acte=TypeActeService.getAll();
+        ArrayList<TypeDepense> type_acte=TypeDepenseService.getAll();
         model.addAttribute("type", type_acte);
-        return AdminService.redirectConnect(session, "admin/crud/type_acte/liste");
+        return AdminService.redirectConnect(session, "admin/crud/type_depense/liste");
     }
 
+
     @PostMapping("/add")
-    public String add(@RequestParam String type,
+    public String add( @RequestParam String type,
     @RequestParam String budget,
     @RequestParam String code) 
     {
         BigDecimal bu=new BigDecimal(budget);
-        TypeActeService.insert(type,bu,code);
+        TypeDepenseService.insert(type,bu,code);
         return "redirect:liste";
     }
 
     
     @PostMapping("/update")
     public String update(@RequestParam Integer id,
-        @RequestParam String type,
-        @RequestParam String budget,
-        @RequestParam String code) 
+    @RequestParam String type,
+    @RequestParam String budget,
+    @RequestParam String code) 
     {
         BigDecimal bu=new BigDecimal(budget);
-        TypeActeService.update(id, type,bu,code);
+        TypeDepenseService.update(id, type,bu,code);
         return "redirect:liste";
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable("id") int id,HttpSession session) 
+    public String delete(@PathVariable("id") int id) 
     {
-        TypeActeService.delete(id);
-        return AdminService.redirectConnect(session, "redirect:/typeActe/liste");
+        TypeDepenseService.delete(id);
+        return "redirect:/typeDepense/liste";
     }
 
     @GetMapping("/update/{id}")
     public String update(@PathVariable("id") int id,Model model,HttpSession session) 
     {
-        TypeActe type=TypeActeService.getById(id);
+        TypeDepense type=TypeDepenseService.getById(id);
         model.addAttribute("type",type);
-        return AdminService.redirectConnect(session, "admin/crud/type_acte/update");
+        return AdminService.redirectConnect(session, "admin/crud/type_depense/update");
     }
-
 
 
 }

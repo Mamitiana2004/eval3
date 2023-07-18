@@ -21,7 +21,7 @@ public class Depense extends Entity{
     Integer id;
     
     @Column
-    String libelle;
+    Integer type;
     
     @Column
     Integer prix;
@@ -37,12 +37,12 @@ public class Depense extends Entity{
         this.id = id;
     }
 
-    public String getLibelle() {
-        return libelle;
+    public Integer getType() {
+        return type;
     }
 
-    public void setLibelle(String libelle) {
-        this.libelle = libelle;
+    public void setType(Integer type) {
+        this.type = type;
     }
 
     public Integer getPrix() {
@@ -61,25 +61,25 @@ public class Depense extends Entity{
         this.dateDepense = dateDepense;
     }
 
-    public Depense() {
-    }
-
     public Depense(Integer id) {
         this.id = id;
     }
 
-    public Depense(String libelle, Integer prix, Date dateDepense) {
-        this.libelle = libelle;
+    public Depense(Integer id, Integer type, Integer prix, Date dateDepense) {
+        this.id = id;
+        this.type = type;
         this.prix = prix;
         this.dateDepense = dateDepense;
     }
 
-    public Depense(Integer id, String libelle, Integer prix, Date dateDepense) {
-        this.id = id;
-        this.libelle = libelle;
+    public Depense(Integer type, Integer prix, Date dateDepense) {
+        this.type = type;
         this.prix = prix;
         this.dateDepense = dateDepense;
     }
 
     
+    
+    public Depense() {
+    }
 }
