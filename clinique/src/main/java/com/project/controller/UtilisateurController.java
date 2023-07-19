@@ -23,11 +23,11 @@ public class UtilisateurController {
 			return "redirect:/utilisateur";
 		}
 		case 1:{
-			model.addAttribute("errorPassword","Mot de passe incorrect");
+			model.addAttribute("errorPassword","Mot de passe incorrect.");
 			return "user/login";
 		}
 		case 2:{
-			model.addAttribute("errorIdentifiant","Identifiant inconnue");
+			model.addAttribute("errorIdentifiant","Identifiant incorrect.");
 			return "user/login";
 		}
 		default:

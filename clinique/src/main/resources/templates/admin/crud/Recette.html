@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-        <title>Acceuil - Admin</title>
+        <title>Tableau de bord - Admin</title>
         
         <!-- icon -->
         <link rel="shortcut icon" th:href="@{/assets/img/hyper.svg}" type="image/x-icon">
@@ -29,10 +29,10 @@
 
         <main id="main" class="main">
             <div class="pagetitle">
-                <h1>Dashbord</h1>
+                <h1>Tableau de bord</h1>
                 <nav>
                   <ol class="breadcrumb">
-                    <li class="breadcrumb-item active">Budget</li>
+                    <li class="breadcrumb-item active">Budget mensuel</li>
                   </ol>
                 </nav>
             </div><!-- End Page Title -->
@@ -90,22 +90,22 @@
                         <thead>
                           <tr>
                             <th scope="col">Type Acte</th>
-                            <th scope="col">Reel</th>
-                            <th scope="col">Budget</th>
-                            <th scope="col">Realisation</th>
+                            <th scope="col">Réel</th>
+                            <th scope="col">Budget mensuel</th>
+                            <th scope="col">Réalisation</th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr th:each="recette : ${recettes}">
                             <td th:text="${recette.recetteMois.getType()}"></td>
-                            <td th:text="${recette.recetteMois.getRecette()}"></td>
-                            <td th:text="${recette.budget}"></td>
+                            <td th:text="${recette.reelStr}"></td>
+                            <td th:text="${recette.budgetStr}"></td>
                             <td th:text="${recette.getRealisation()}+' %'"></td>
                           </tr>
                           <tr >
                             <td></td>
-                            <td  style="background-color: #d7d7d7;" th:text="${totalRecettes.getReel()}"></td>
-                            <td  style="background-color: #d7d7d7;" th:text="${totalRecettes.getBudget()}"></td>
+                            <td  style="background-color: #d7d7d7;" th:text="${totalRecettes.getReelStr()}"></td>
+                            <td  style="background-color: #d7d7d7;" th:text="${totalRecettes.getBudgetStr()}"></td>
                             <td  style="background-color: #d7d7d7;" th:text="${totalRecettes.getRealisation()}+' %'"></td>
                           </tr>
                         </tbody>
@@ -125,22 +125,22 @@
                         <thead>
                           <tr>
                             <th scope="col">Type Acte</th>
-                            <th scope="col">Reel</th>
-                            <th scope="col">Budget</th>
-                            <th scope="col">Realisation</th>
+                            <th scope="col">Réel</th>
+                            <th scope="col">Budget mensuel</th>
+                            <th scope="col">Réalisation</th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr th:each="depense : ${depenses}">
                             <td th:text="${depense.depenseMois.getType()}"></td>
-                            <td th:text="${depense.depenseMois.getDepense()}"></td>
-                            <td th:text="${depense.budget}"></td>
+                            <td th:text="${depense.reelStr}"></td>
+                            <td th:text="${depense.budgetStr}"></td>
                             <td th:text="${depense.getRealisation()}+' %'"></td>
                           </tr>
                           <tr>
                             <td></td>
-                            <td  style="background-color: #d7d7d7;" th:text="${totalDepenses.getReel()}"></td>
-                            <td  style="background-color: #d7d7d7;" th:text="${totalDepenses.getBudget()}"></td>
+                            <td  style="background-color: #d7d7d7;" th:text="${totalDepenses.getReelStr()}"></td>
+                            <td  style="background-color: #d7d7d7;" th:text="${totalDepenses.getBudgetStr()}"></td>
                             <td  style="background-color: #d7d7d7;" th:text="${totalDepenses.getRealisation()}+' %'"></td>
                           </tr>
                         </tbody>
@@ -159,22 +159,22 @@
                         <thead>
                           <tr>
                             <th scope="col"></th>
-                            <th scope="col">Reel</th>
-                            <th scope="col">Budget</th>
-                            <th scope="col">Realisation</th>
+                            <th scope="col">Réel</th>
+                            <th scope="col">Budget mensuel</th>
+                            <th scope="col">Réalisation</th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
                             <td>Recette</td>
-                            <td th:text="${totalRecettes.getReel()}"></td>
-                            <td th:text="${totalRecettes.getBudget()}"></td>
+                            <td th:text="${totalRecettes.getReelStr()}"></td>
+                            <td th:text="${totalRecettes.getBudgetStr()}"></td>
                             <td th:text="${totalRecettes.getRealisation()}+' %'"></td>
                           </tr>
                           <tr>
                             <td>Depense</td>
-                            <td th:text="${totalDepenses.getReel()}"></td>
-                            <td th:text="${totalDepenses.getBudget()}"></td>
+                            <td th:text="${totalDepenses.getReelStr()}"></td>
+                            <td th:text="${totalDepenses.getBudgetStr()}"></td>
                             <td th:text="${totalDepenses.getRealisation()}+' %'"></td>
                           </tr>
                           <tr style="background-color: #d7d7d7;">

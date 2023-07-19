@@ -63,11 +63,10 @@ public class ActeController {
             montantT+=acte.getPrix();
         }
         Date date=new Date();
-        SimpleDateFormat format=new SimpleDateFormat("dd-MM-yyyy");
         model.addAttribute("actes", liste);
         model.addAttribute("patient", p);
         model.addAttribute("montantT", montantT);
-        model.addAttribute("dateN", format.format(date));
+        model.addAttribute("dateN", date);
         return UtilisateurService.redirectConnect(session, "user/acte/facture");
     }
 
@@ -98,7 +97,7 @@ public class ActeController {
         model.addAttribute("patients",patients);
         model.addAttribute("types",types);
         model.addAttribute("acte",acte);
-        return AdminService.redirectConnect(null, "admin/crud/acte/update");
+        return AdminService.redirectConnect(session, "admin/crud/acte/update");
     }
 
 

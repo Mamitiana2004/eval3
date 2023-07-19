@@ -17,6 +17,7 @@ import com.project.model.view.DepenseM;
 import com.project.model.view.Recette;
 import com.project.model.view.TotalDepense;
 import com.project.model.view.TotalRecette;
+import com.project.service.ActeService;
 import com.project.service.AdminService;
 import com.project.service.DepenseMoiService;
 import com.project.service.RecetteMoiService;
@@ -34,11 +35,11 @@ public class AdminController {
 			return "redirect:/admin/acceuil";
 		}
 		case 1:{
-			model.addAttribute("errorPassword","Mot de passe incorrect");
+			model.addAttribute("errorPassword","Mot de passe incorrect.");
 			return "admin/login";
 		}
 		case 2:{
-			model.addAttribute("errorIdentifiant","Identifiant inconnue");
+			model.addAttribute("errorIdentifiant","Identifiant incorrect.");
 			return "admin/login";
 		}
 		default:
@@ -77,11 +78,11 @@ public class AdminController {
 		Long beneficeReel=(totalRecette.getReel()-totalDepense.getReel());
 		Long benificeBudget=(totalRecette.getBudget()-totalDepense.getBudget());
 
-		Double totalReal=(double)Math.round(((beneficeReel.doubleValue()/benificeBudget.doubleValue())*100));
+		Double totalReal=AdminService.arrondir((beneficeReel.doubleValue()/benificeBudget.doubleValue())*100);
 
 		
-		model.addAttribute("br",beneficeReel);
-		model.addAttribute("bb",benificeBudget);
+		model.addAttribute("br",ActeService.formatP(beneficeReel.doubleValue()));
+		model.addAttribute("bb",ActeService.formatP(benificeBudget.doubleValue()));
 		model.addAttribute("bre",totalReal);
         
 		

@@ -1,6 +1,8 @@
 package com.project.service;
 
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpSession;
@@ -9,6 +11,12 @@ import com.project.model.Admin;
 import com.project.util.Cryptage;
 
 public class AdminService {
+
+    public static double arrondir(double nombre) {
+        BigDecimal decimal = new BigDecimal(nombre);
+        decimal = decimal.setScale(2, RoundingMode.HALF_UP);
+        return decimal.doubleValue();
+    }
 	
 	public static int login(String identifiant,String password) throws Exception{
         ArrayList<Admin> admins=new Admin().getAll();

@@ -59,7 +59,7 @@ public class DepenseController {
     {
         SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
         for (Integer moi : mois) {
-            Date date=format.parse(annee+"-"+moi+"-"+jour);
+            Date date=DepenseService.genererDateM(jour,moi,annee);
             DepenseService.insert(type, prix, format.format(date));
         }
         return UtilisateurService.redirectConnect(session,"redirect:addUser");

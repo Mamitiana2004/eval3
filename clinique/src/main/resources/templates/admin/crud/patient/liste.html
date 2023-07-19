@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" th:import="java.util.Date">
     <head>
         <title>Patient</title>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
@@ -35,8 +35,7 @@
               <h1>Patient</h1>
               <nav>
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a>CRUD</a></li>
-                  <li class="breadcrumb-item active">Liste</li>
+                  <li class="breadcrumb-item active">Liste des patients</li>
                 </ol>
               </nav>
             </div><!-- End Page Title -->
@@ -65,11 +64,11 @@
                           <tr th:each="patient : ${patients}">
                             <td th:text="${patient.id}"></td>
                             <td th:text="${patient.nom}"></td>
-                            <td th:text="${patient.dateNaissance}"></td>
-                            <td th:text="${patient.genre}"></td>
-                            <td th:text="${patient.remboursement}"></td>
+                            <td th:text="${#dates.format(patient.dateNaissance, 'dd MMMM yyyy')}"></td>
+                            <td th:text="${patient.genre == 'm' ? 'Homme' : 'Femme'}"></td>
+                            <td th:text="${patient.remboursement == true ? 'Oui' : 'Non'}"></td>
                             <td>
-                              <a th:href="@{/patient/update/{id}(id=${patient.id})}"><button type="button" class="btn btn-info"><i class="bi bi-pencil"></i></button></a>
+                              <a th:href="@{/patient/update/{id}(id=${patient.id})}"><button type="button" class="btn btn-success"><i class="bi bi-pencil"></i></button></a>
                               <a th:href="@{/patient/delete/{id}(id=${patient.id})}"><button type="button" class="btn btn-danger"><i class="bi bi-trash"></i></button></a>
                             </td>
                           </tr>

@@ -8,6 +8,9 @@ package com.project.model.view;
 
 import java.util.ArrayList;
 
+import com.project.service.ActeService;
+import com.project.service.AdminService;
+
 /**
  *
  * @author mamit
@@ -15,8 +18,12 @@ import java.util.ArrayList;
 public class TotalRecette {
     
     Long reel;
+
+    String reelStr;
     
     Long budget;
+
+    String budgetStr;
     
     Double realisation;
     
@@ -29,10 +36,12 @@ public class TotalRecette {
             budget=budget+recette.getBudget().longValue();
         }
         realisation=getValueRealisation();
+        reelStr=ActeService.formatP(reel.doubleValue());
+        budgetStr=ActeService.formatP(budget.doubleValue());
     }
     
     private Double getValueRealisation(){
-        Double val=(double)Math.round(((reel.doubleValue()/budget.doubleValue())*100));
+        Double val=AdminService.arrondir((reel.doubleValue()/budget.doubleValue())*100);
         return val;
     }
 
@@ -67,6 +76,27 @@ public class TotalRecette {
         return "TotalRecette{" + "reel=" + reel + ", budget=" + budget + ", realisation=" + realisation + '}';
     }
     
+    
+
+    
+    public String getBudgetStr() {
+        return budgetStr;
+    }
+    
+    public void setBudgetStr(String budgetStr) {
+        this.budgetStr = budgetStr;
+    }
+
+
+    public String getReelStr() {
+        return reelStr;
+    }
+
+    
+
+    public void setReelStr(String reelStr) {
+        this.reelStr = reelStr;
+    }
     
     
 }

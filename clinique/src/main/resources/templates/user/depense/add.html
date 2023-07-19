@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" th:import="java.util.Date">
     <head>
         <title>Acceuil </title>
-        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <meta charset="UTF-8">
         <!-- icon -->
         <link rel="shortcut icon" th:href="@{/assets/img/hyper.svg}" type="image/x-icon">
 
@@ -58,7 +58,13 @@
                                 </div>
                                 <div class="col-md-4 row">
                                     <div class="col-md-6" th:each="moi : ${mois}">
-                                        <p><input name="mois" type="checkbox" th:value="${moi.id}" ><span th:text="${moi.mois}"></span></p>
+                                        <p>
+                                          <input name="mois" type="checkbox" th:value="${moi.id}" >
+                                          <span th:if="${moi.id==2}">Février</span>
+                                          <span th:if="${moi.id==8}">Août</span>
+                                          <span th:if="${moi.id==12}">Décembre</span>
+                                          <span th:if="${moi.id!=12 && moi.id!=2 && moi.id!=8}" th:text="${moi.mois}"></span>
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="col-md-4 form-floating">

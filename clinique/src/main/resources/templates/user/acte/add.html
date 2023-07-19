@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" th:import="java.util.Date">
     <head>
         <title>Liste Acte</title>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
@@ -121,7 +121,7 @@
                           <tr th:each="acte : ${actes}">
                             <td th:text="${acte.type}"></td>
                             <td th:text="${acte.prix}"></td>
-                            <td th:text="${acte.dateActe}"></td>
+                            <td th:text="${#dates.format(acte.dateActe, 'dd MMMM yyyy')}"></td>
                           </tr>
                         </tbody>
                       </table>

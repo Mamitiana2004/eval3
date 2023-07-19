@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.project.model.Mois;
 import com.project.model.Patient;
 import com.project.model.TypeActe;
 import com.project.model.view.ActeV;
@@ -30,6 +31,7 @@ public class PatientController {
     public String getAll(Model model,HttpSession session) {
         ArrayList<Patient> patients=PatientService.getAll();
         model.addAttribute("patients", patients);
+        model.addAttribute("mois", new Mois());
         return AdminService.redirectConnect(session, "admin/crud/patient/liste");
     }
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" th:import="java.util.Date">
     <head>
         <title>Acceuil </title>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
@@ -56,7 +56,7 @@
                           <tbody>
                             <tr th:each="patient : ${patients}">
                               <td th:text="${patient.nom}"></td>
-                              <td th:text="${patient.dateNaissance}"></td>
+                              <td th:text="${#dates.format(patient.dateNaissance, 'dd MMMM yyyy')}"></td>
                               <td th:text="${patient.genre == 'm' ? 'Homme' : 'Femme'}"></td>
                               <td>
                                 <a th:href="@{/patient/addActe/{id}(id=${patient.id})}"><button type="button" class="btn btn-info"><i class="bi bi-plus"></i>Ajouter un acte</button></a>

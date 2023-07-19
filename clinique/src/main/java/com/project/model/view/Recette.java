@@ -6,6 +6,8 @@
 package com.project.model.view;
 
 import com.project.model.TypeActe;
+import com.project.service.ActeService;
+import com.project.service.AdminService;
 import com.project.service.TypeActeService;
 
 /**
@@ -15,8 +17,14 @@ import com.project.service.TypeActeService;
 public class Recette {
     
     RecetteMois recetteMois;
+
+    Double reel;
+
+    String reelStr;
     
     Double budget;
+
+    String budgetStr;
     
     Double realisation;
     
@@ -24,11 +32,16 @@ public class Recette {
         this.recetteMois=recetteMois;
         TypeActe type=TypeActeService.getById(recetteMois.getIdType());
         budget=type.getBudget().doubleValue()/12;
+        reel=recetteMois.getRecette().doubleValue();
         realisation=getValueRealisation();
+        reelStr=ActeService.formatP(reel);
+        budgetStr=ActeService.formatP(budget);
     }
+
+
     
     private Double getValueRealisation(){
-        Double val=(double) Math.round(((recetteMois.getRecette()/budget)*100));
+        Double val=AdminService.arrondir((recetteMois.getRecette()/budget)*100);
         return val;
     }
 
@@ -62,6 +75,29 @@ public class Recette {
         this.realisation = realisation;
     }
 
+    public String getBudgetStr() {
+        return budgetStr;
+    }
+    
+    public void setBudgetStr(String budgetStr) {
+        this.budgetStr = budgetStr;
+    }
+
+    public Double getReel() {
+        return reel;
+    }
+
+    public String getReelStr() {
+        return reelStr;
+    }
+
+    public void setReel(Double reel) {
+        this.reel = reel;
+    }
+
+    public void setReelStr(String reelStr) {
+        this.reelStr = reelStr;
+    }
     
     
     

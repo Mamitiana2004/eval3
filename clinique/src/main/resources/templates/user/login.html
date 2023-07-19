@@ -40,31 +40,34 @@
                         <div class="card-body">
         
                           <div class="pt-4 pb-2">
-                            <h5 class="card-title text-center pb-0 fs-4">Login</h5>
-                            <p class="text-center small">Enter your identifiant & password to continue</p>
+                            <h5 class="card-title text-center pb-0 fs-4">Utilisateur</h5>
+                            <p class="text-center small">Entrer votre identifiant et mot de passe pour continuer</p>
                           </div>
         
                           <form action="/user/login" method="post" class="row g-3 needs-validation" novalidate>
         
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                  <input required type="text" name="identifiant" class="form-control" id="floatingName">
+                                  <input required type="text" placeholder="identifiant" name="identifiant" class="form-control" id="floatingName">
                                   <label for="floatingName">Identifiant</label>
-                                  <div style="color: #a00;" th:text="${errorIdentifiant}"></div>
+                                  <div style="color: #a00;padding-left: 10px;" th:text="${errorIdentifiant}"></div>
                                 </div>
                             </div>
     
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                  <input required type="password" name="password" class="form-control" id="floatingName">
-                                  <label for="floatingName">Password</label>
-                                  <div style="color: #a00;" th:text="${errorPassword}"></div>
+                                  <input required type="password" placeholder="mot de passe" name="password" class="form-control" id="floatingName">
+                                  <label for="floatingName">Mot de passe</label>
+                                  <div style="color: #a00;padding-left: 10px;" th:text="${errorPassword}"></div>
                                 </div>
                             </div>
         
         
                             <div class="col-12">
-                              <button class="btn btn-primary w-100" type="submit">Login</button>
+                              <button class="btn btn-primary w-100" type="submit">Se connecter</button>
+                            </div>
+                            <div class="col-12">
+                              <p class="small mb-0"><a href="/loginAdmin">Se connecter au compte de l'administrateur.</a></p>
                             </div>
                           </form>
         

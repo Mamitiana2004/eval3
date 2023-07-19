@@ -15,9 +15,18 @@ public class RedirectController {
 
 	@GetMapping("/")
     public String home(Model model,HttpSession session) {
+        return "index";
+    }
+
+    @GetMapping("/logoutAdmin")
+    public String logAdmin(HttpSession session) {
         session.removeAttribute("idAdmin");
-        session.removeAttribute("idEmploye");
-		model.addAttribute("pageTitle", "Index");
+        return "index";
+    }
+
+    @GetMapping("/logoutEmploye")
+    public String logUser(HttpSession session) {
+        session.removeAttribute("idEmp");
         return "index";
     }
 

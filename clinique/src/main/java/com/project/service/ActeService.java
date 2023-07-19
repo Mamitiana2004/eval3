@@ -8,6 +8,8 @@ package com.project.service;
 import com.project.model.Acte;
 import com.project.model.TypeActe;
 import com.project.model.view.ActeV;
+
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -38,6 +40,12 @@ public class ActeService {
             System.err.println("Acte select : "+e.getMessage());
             return null;
         }
+    }
+
+
+    public static String formatP(Double val){
+        DecimalFormat decimal=new DecimalFormat("#,##0.00");
+        return decimal.format(val);
     }
 
     public static ActeV getById(Integer id){

@@ -6,13 +6,15 @@
 package com.project.service;
 
 import com.project.model.Depense;
-import com.project.model.TypeActe;
 import com.project.model.view.DepenseV;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import java.time.LocalDate;
+import java.time.ZoneId;
 
 /**
  *
@@ -68,6 +70,18 @@ public class DepenseService {
         } catch (Exception e) {
             System.err.println("Depense delete :"+e.getMessage());
         }
+    }
+
+    public static Date genererDateM(int jour, int mois, int annee) {
+        LocalDate localDate = null;
+
+        try {
+            localDate = LocalDate.of(annee, mois, jour);
+        } catch (java.time.DateTimeException e) {
+            localDate = LocalDate.of(annee, mois+1, 1).withDayOfMonth(1).minusDays(1);
+        }
+
+        return Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
     }
 
     public static void getDepense(List<String[]> datas) throws Exception{

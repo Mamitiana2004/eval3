@@ -35,9 +35,9 @@ values
 
 create table type_acte(
     id serial primary key,
-    type varchar(255),
+    type varchar(255) unique,
     budget numeric(16,2),
-    code char(3)
+    code char(3) unique
 );
 
 insert into type_acte(type,budget,code)
@@ -48,9 +48,9 @@ values
 
 create table type_depense(
     id serial primary key,
-    libelle varchar(255),
+    libelle varchar(255) unique,
     budget numeric(16,2),
-    code char(3)
+    code char(3) unique
 );
 
 insert into type_depense(libelle,budget,code)
@@ -95,17 +95,17 @@ create table mois(
 
 INSERT INTO mois (mois) VALUES
     ('Janvier'),
-    ('Fevrier'),
+    ('Février'),
     ('Mars'),
     ('Avril'),
     ('Mai'),
     ('Juin'),
     ('Juillet'),
-    ('Aout'),
+    ('Août'),
     ('Septembre'),
     ('Octobre'),
     ('Novembre'),
-    ('Decembre');
+    ('Décembre');
 
 
 create view v_depense as

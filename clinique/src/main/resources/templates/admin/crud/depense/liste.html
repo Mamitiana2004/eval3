@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"  th:import="java.util.Date">
     <head>
         <title>Depense - liste</title>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
@@ -63,7 +63,7 @@
                             <td th:text="${depense.id}"></td>
                             <td th:text="${depense.libelle}"></td>
                             <td th:text="${depense.prix}"></td>
-                            <td th:text="${depense.dateDepense}"></td>
+                            <td th:text="${#dates.format(depense.dateDepense, 'dd MMMM yyyy')}"></td>
                             <td>
                               <a th:href="@{/depense/update/{id}(id=${depense.id})}"><button type="button" class="btn btn-info"><i class="bi bi-pencil"></i></button></a>
                               <a th:href="@{/depense/delete/{id}(id=${depense.id})}"><button type="button" class="btn btn-danger"><i class="bi bi-trash"></i></button></a>
